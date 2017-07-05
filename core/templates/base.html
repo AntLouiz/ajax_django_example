@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>	
+</head>
+
+
+	<script>
+		$(document).ready(function(){
+		   $('.button_send').on('click',function(){
+			var name = null;
+
+			name = $('.search_button').val();
+			console.log(name);
+			$.ajax({
+			  method: "GET",
+			  url: "/ajax_request/",
+			  data: { name: name}
+			})
+			.done(function( data ) {
+				var html = '';
+				html += '<h1>'+data+'</h1>';
+
+				console.log(data);
+				alert( "Data User: " + data );
+			});
+			});
+		});
+	</script>
+
+
+<body>
+	<input type='text' name='name' class='search_button' />
+	<input type='button' class='button_send' value='search'/>
+</body>
+</html>
